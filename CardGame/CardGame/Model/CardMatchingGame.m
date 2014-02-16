@@ -62,9 +62,11 @@ static const int COST_TO_CHOOSE = 1;
                 if([self.chosenCards count] == modeNumber){
                     int matchScore = 0;
                     for(int i = 1; i < modeNumber; i++){
+                        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
                         for(int j = 0; j < i; j++ ){
-                            matchScore += [self.chosenCards[j] match:@[self.chosenCards[i]]];
+                            [tempArray addObject:self.chosenCards[j]];
                         }
+                        matchScore += [self.chosenCards[i] match:tempArray];
                     }
                     if(matchScore){
                         self.score +=matchScore * MATCH_BONUS;
